@@ -25,6 +25,7 @@ export const NavigatorRoute = () => {
 
       {/* list 1 */}
       <Stack.Screen name="Animation101Screen" component={Animation101Screen} />
+      <Stack.Screen name="Animation102Screen" component={Animation102Screen} />
 
       {/* list 2 */}
       <Stack.Screen name="PullToRefreshScreen" component={PullToRefreshScreen} />

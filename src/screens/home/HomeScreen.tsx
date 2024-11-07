@@ -12,6 +12,11 @@ const animationMenuItems = [
     icon: "cube-outline",
     component: "Animation101Screen",
   },
+  {
+    name: 'Animation 102',
+    icon: 'albums-outline',
+    component: 'Animation102Screen',
+  },
 ];
 
 const menuItems = [
@@ -87,19 +92,6 @@ export const HomeScreen = () => {
 
           <View style={{ marginTop: 30 }} />
 
-          {menuItems.map((menu, index) => (
-            <MenuItem
-              key={index}
-              name={menu.name}
-              icon={menu.icon}
-              component={menu.component}
-              isFirst={index === 0}
-              isLast={index === menuItems.length - 1}
-            />
-          ))}
-
-          <View style={{ marginTop: 30 }} />
-
           {uiMenuItems.map((ui, index) => (
             <MenuItem
               key={index}
@@ -109,6 +101,19 @@ export const HomeScreen = () => {
               isFirst={index === 0}
               isLast={index === uiMenuItems.length - 1}
               showSeparator
+            />
+          ))}
+
+          <View style={{ marginTop: 30 }} />
+
+          {menuItems.map((menu, index) => (
+            <MenuItem
+              key={index}
+              name={menu.name}
+              icon={menu.icon}
+              component={menu.component}
+              isFirst={index === 0}
+              isLast={index === menuItems.length - 1}
             />
           ))}
         </ScrollView>
