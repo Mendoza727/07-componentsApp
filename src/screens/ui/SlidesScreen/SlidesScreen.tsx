@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import {
   FlatList,
   ImageSourcePropType,
@@ -14,6 +14,7 @@ import { colors, globalStyles } from "../../../config/Global.styles";
 import { TitleComponent } from "../../../components/ui/titleComponent";
 import { ButtonComponent } from "../../../components/ui/ButtonComponent";
 import { useNavigation } from "@react-navigation/native";
+import { themeContext } from "../../../context/ThemeContext";
 
 interface Slide {
   title: string;
@@ -41,6 +42,7 @@ const items: Slide[] = [
 
 export const SlidesScreen = () => {
   const { goBack } = useNavigation();
+  const { colors } = useContext(themeContext);
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
@@ -114,12 +116,13 @@ interface SlideItemsProps {
 
 const SlideItem = ({ item }: SlideItemsProps) => {
   const { width } = useWindowDimensions();
+  const { colors } = useContext(themeContext);
   const { title, desc, img } = item;
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: colors.background,
         borderRadius: 5,
         padding: 40,
         justifyContent: "center",

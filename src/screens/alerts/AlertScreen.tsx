@@ -6,11 +6,12 @@ import { globalStyles } from "../../config/Global.styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ButtonComponent } from "../../components/ui/ButtonComponent";
 
-import prompt from "react-native-prompt-android";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
+import { themeContext } from "../../context/ThemeContext";
 
 export const AlertScreen = () => {
   const { top } = useSafeAreaInsets();
+  const { colors } = useContext( themeContext );
 
   const [visible, setVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -73,7 +74,9 @@ export const AlertScreen = () => {
       <ButtonComponent title="Prompt - Input" onPress={showDialog} />
 
       <Portal>
-        <Dialog visible={visible} onDismiss={hideDialog}>
+        <Dialog visible={visible} onDismiss={hideDialog} style={{
+          backgroundColor: colors.background
+        }}>
           <Dialog.Title>Ingrese un valor</Dialog.Title>
           <Dialog.Content>
             <Text>Por favor, introduce un valor:</Text>
@@ -94,3 +97,7 @@ export const AlertScreen = () => {
     </CustomView>
   );
 };
+function useContext(themeContext: any): { colors: any; } {
+  throw new Error("Function not implemented.");
+}
+
