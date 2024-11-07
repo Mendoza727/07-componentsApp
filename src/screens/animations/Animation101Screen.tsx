@@ -1,10 +1,14 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from "react-native";
-import { colors, globalStyles } from "../../config/Global.styles";
+import { globalStyles, colors } from '../../config/Global.styles';
+import { themeContext } from "../../context/ThemeContext";
+import { TitleComponent } from "../../components/ui/titleComponent";
 
 export const Animation101Screen = () => {
   const animateOpacity = useRef(new Animated.Value(0)).current;
   const animationScale = useRef(new Animated.Value(0)).current;
+
+  const { colors } = useContext( themeContext );
 
   const FadeIn = (easing = Easing.bounce) => {
     // Inicia animación de opacidad
@@ -47,7 +51,11 @@ export const Animation101Screen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{
+      ...styles.container,
+      backgroundColor: colors.background
+    }}>
+
       <Animated.View style={animatedStyles} />
 
       <Pressable
@@ -55,13 +63,12 @@ export const Animation101Screen = () => {
         style={{
           ...globalStyles.btnPrimary,
           marginTop: 10,
-          backgroundColor: colors.text,
         }}
       >
         <Text
           style={{
             ...globalStyles.btnPrimaryText,
-            color: "white",
+            color: colors.text,
           }}
         >
           Fade In
@@ -78,7 +85,7 @@ export const Animation101Screen = () => {
         <Text
           style={{
             ...globalStyles.btnPrimaryText,
-            color: "white",
+            color:  colors.text
           }}
         >
           Fade Out

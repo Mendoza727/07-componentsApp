@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CustomView } from "../../components/ui/CustomView";
 import { CardComponent } from "../../components/ui/CardComponent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SwitchComponent } from "../../components/ui/SwitchComponent";
 import { SeparatorComponent } from "../../components/ui/SeparatorComponent";
 import { TitleComponent } from "../../components/ui/titleComponent";
+import { themeContext } from "../../context/ThemeContext";
 
 export const SwitchScreen = () => {
   const { top } = useSafeAreaInsets();
+  const { colors } = useContext( themeContext );
 
   const [state, setState] = useState({
     isActive: true,

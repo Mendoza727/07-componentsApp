@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Platform, StyleSheet, Switch, Text, View } from "react-native";
+import { themeContext } from "../../context/ThemeContext";
 
 interface Prop {
     title?: string
@@ -8,10 +9,14 @@ interface Prop {
 }
 
 export const SwitchComponent = ({ toggleSwitch, isEnabled, title }: Prop) => {
+  const { colors } = useContext( themeContext );
+  
   return (
     <View style={style.switchRow}>
       {
-        title && (<Text>{title}</Text>)
+        title && (<Text style={{
+          color: colors.text
+        }}>{title}</Text>)
       }
 
       <Switch

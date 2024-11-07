@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { globalStyles } from "../../config/Global.styles";
 import { ScrollView } from "react-native-gesture-handler";
 import { TitleComponent } from "../../components/ui/titleComponent";
 import { MenuItem } from "../../components/ui/MenuItem";
+import { themeContext } from "../../context/ThemeContext";
 
 const animationMenuItems = [
   // 01-animationMenuItems
@@ -73,8 +74,13 @@ const uiMenuItems = [
 ];
 
 export const HomeScreen = () => {
+  const { colors } = useContext( themeContext );
+  
   return (
-    <View style={globalStyles.mainContainer}>
+    <View style={{
+      ...globalStyles.mainContainer,
+      backgroundColor: colors.background
+    }}>
       <View style={globalStyles.globalMargin}>
         <ScrollView>
           <TitleComponent title="Opciones del menú" safe />

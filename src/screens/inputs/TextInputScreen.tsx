@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -11,6 +11,7 @@ import { TitleComponent } from "../../components/ui/titleComponent";
 import { globalStyles } from "../../config/Global.styles";
 import { CardComponent } from "../../components/ui/CardComponent";
 import { ScrollView } from "react-native-gesture-handler";
+import { themeContext } from "../../context/ThemeContext";
 
 export const TextInputScreen = () => {
   const [form, setForm] = useState({
@@ -20,22 +21,28 @@ export const TextInputScreen = () => {
     password: "",
   });
 
+  const { colors } = useContext(themeContext);
+
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined }
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView>
         <CustomView
           style={{
             ...globalStyles.globalMargin,
             marginBottom: 60,
+            backgroundColor: colors.background,
           }}
         >
           <TitleComponent title="Text Inputs" />
 
           <CardComponent>
             <TextInput
-              style={globalStyles.inputStyle}
+              style={{
+                ...globalStyles.inputStyle,
+                backgroundColor: colors.text,
+              }}
               placeholder="Nombre Completo"
               autoCapitalize={"words"}
               autoCorrect={false}
@@ -43,7 +50,10 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={globalStyles.inputStyle}
+              style={{
+                ...globalStyles.inputStyle,
+                backgroundColor: colors.text,
+              }}
               placeholder="Correo Electronico"
               autoCapitalize={"none"}
               keyboardType="email-address"
@@ -52,14 +62,20 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={globalStyles.inputStyle}
+              style={{
+                ...globalStyles.inputStyle,
+                backgroundColor: colors.text,
+              }}
               placeholder="Telefono"
               keyboardType="phone-pad"
               onChangeText={(value) => setForm({ ...form, phone: value })}
             />
 
             <TextInput
-              style={globalStyles.inputStyle}
+              style={{
+                ...globalStyles.inputStyle,
+                backgroundColor: colors.text,
+              }}
               placeholder="Password"
               keyboardType="default"
               autoCapitalize={"none"}
@@ -70,19 +86,64 @@ export const TextInputScreen = () => {
 
           <View style={{ height: 10 }} />
           <CardComponent>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}
+            >
+              {JSON.stringify(form, null, 2)}
+            </Text>
           </CardComponent>
           <View style={{ height: 10 }} />
 
           <CardComponent>
             <TextInput
-              style={globalStyles.inputStyle}
+              style={{
+                ...globalStyles.inputStyle,
+                backgroundColor: colors.text,
+              }}
               placeholder="Telefono"
               keyboardType="phone-pad"
               onChangeText={(value) => setForm({ ...form, phone: value })}
@@ -90,8 +151,7 @@ export const TextInputScreen = () => {
           </CardComponent>
         </CustomView>
 
-
-        <View  style={{ height: 50 }} />
+        <View style={{ height: 50, backgroundColor: colors.background }} />
       </ScrollView>
     </KeyboardAvoidingView>
   );
